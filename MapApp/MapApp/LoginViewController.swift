@@ -37,9 +37,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     func loginToUdacity(){
         UdacityClient.sharedInstance.udacityLogin(emailTextField.text!, password: passwordTextField.text!){ (data, error) in
-            print(data)
+            if data != nil{
+                ParseClient.sharedInstance.getStudentLocations()
+            }
+        }
     }
-    
-
-}
 }

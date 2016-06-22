@@ -10,18 +10,17 @@ import Foundation
 
 class UdacityClient{
     
-    var session: NSURLSession
+    var session: NSURLSession!
+    var udacity: NSDictionary!
+
     
     static let sharedInstance = UdacityClient()
-    var userKey: String = ""
     
     // Udacity Video - Type Alias Example - Grand Central Dispatch - Closures Reloaded
-    typealias udacityCompletionHandler = (data: [String: AnyObject]?, error: String?) -> Void
+    typealias udacityCompletionHandler = (data: NSDictionary?, error: String?) -> Void
     
     init(){
         session = NSURLSession.sharedSession()
-        var udacityLoginDictionary: [String: AnyObject?]
-
     }
     
     func udacityLogin(email: String!, password: String!, completionHandler: udacityCompletionHandler){
@@ -48,9 +47,9 @@ class UdacityClient{
             }
             let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
             self.convertDataWithCompletionHandler(newData){ (data, error) in
-                print(data)
-                print(self.userKey)
             }
+            completionHandler(data: self.udacity, error: "")
+            print(self.udacity)
             
         }
         task.resume()
@@ -58,16 +57,9 @@ class UdacityClient{
     
     func convertDataWithCompletionHandler(data: NSData, completionHandler: udacityCompletionHandler){
         do{
-            let parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            if let account = parsedResult["account"]{
-                if let key = account!["key"]{
-                    let registered = account!["registered"] as? Bool
-                    let udacityLoginDictionary = ["key": key, "registered": registered]
-                    userKey = account!["key"]
-                    completionHandler(data: ["key":key!], error: "error")
-                    print (udacityLoginDictionary)
-                }
-            }
+            var parsedResult: AnyObject!
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            udacity = parsedResult as? NSDictionary
         }catch{
             print("Could not convert data as JSON")
         }

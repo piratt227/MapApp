@@ -15,10 +15,9 @@
 		931F2EB31D198C880051F8B9 /* MapAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2EB21D198C880051F8B9 /* MapAppTests.swift */; };
 		931F2EBE1D198C880051F8B9 /* MapAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2EBD1D198C880051F8B9 /* MapAppUITests.swift */; };
 		931F2ECC1D198EA40051F8B9 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ECB1D198EA40051F8B9 /* UdacityClient.swift */; };
-		931F2ECE1D198EAB0051F8B9 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ECD1D198EAB0051F8B9 /* ParseClient.swift */; };
 		931F2ED01D198EB20051F8B9 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ECF1D198EB20051F8B9 /* Student.swift */; };
 		931F2ED21D198EB90051F8B9 /* StudentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ED11D198EB90051F8B9 /* StudentManager.swift */; };
-		931F2ED41D198EC20051F8B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ED31D198EC20051F8B9 /* MapViewController.swift */; };
+		93B2391F1D1AF1F400DA5AE3 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2391E1D1AF1F400DA5AE3 /* ParseClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +52,9 @@
 		931F2EBD1D198C880051F8B9 /* MapAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppUITests.swift; sourceTree = "<group>"; };
 		931F2EBF1D198C880051F8B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		931F2ECB1D198EA40051F8B9 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
-		931F2ECD1D198EAB0051F8B9 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		931F2ECF1D198EB20051F8B9 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		931F2ED11D198EB90051F8B9 /* StudentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentManager.swift; sourceTree = "<group>"; };
-		931F2ED31D198EC20051F8B9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		93B2391E1D1AF1F400DA5AE3 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				931F2ECB1D198EA40051F8B9 /* UdacityClient.swift */,
-				931F2ECD1D198EAB0051F8B9 /* ParseClient.swift */,
+				93B2391E1D1AF1F400DA5AE3 /* ParseClient.swift */,
 			);
 			name = Clients;
 			sourceTree = "<group>";
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				931F2E9F1D198C880051F8B9 /* LoginViewController.swift */,
-				931F2ED31D198EC20051F8B9 /* MapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -295,13 +292,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93B2391F1D1AF1F400DA5AE3 /* ParseClient.swift in Sources */,
 				931F2EA01D198C880051F8B9 /* LoginViewController.swift in Sources */,
 				931F2ED21D198EB90051F8B9 /* StudentManager.swift in Sources */,
 				931F2E9E1D198C880051F8B9 /* AppDelegate.swift in Sources */,
-				931F2ECE1D198EAB0051F8B9 /* ParseClient.swift in Sources */,
 				931F2ED01D198EB20051F8B9 /* Student.swift in Sources */,
 				931F2ECC1D198EA40051F8B9 /* UdacityClient.swift in Sources */,
-				931F2ED41D198EC20051F8B9 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +524,7 @@
 				931F2EC41D198C880051F8B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		931F2EC51D198C880051F8B9 /* Build configuration list for PBXNativeTarget "MapAppTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +533,7 @@
 				931F2EC71D198C880051F8B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		931F2EC81D198C880051F8B9 /* Build configuration list for PBXNativeTarget "MapAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +542,7 @@
 				931F2ECA1D198C880051F8B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
