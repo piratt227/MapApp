@@ -11,11 +11,13 @@ import Foundation
 class ParseClient{
     
     var session: NSURLSession!
-    typealias udacityCompletionHandler = (data: NSDictionary?, error: String?) -> Void
+    typealias parseCompletionHandler = (data: AnyObject!, error: String?) -> Void
     static let sharedInstance = ParseClient()
+    var students:Student!
     
     init(){
         session = NSURLSession.sharedSession()
+        students = nil
     }
     
     
@@ -29,9 +31,21 @@ class ParseClient{
             if error != nil { // Handle error...
                 return
             }
-            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+            self.convertDataWithCompletionHandler(data!){ (result, error) in
+                
+            }
         }
         task.resume()
+    }
+    
+    func convertDataWithCompletionHandler(data: NSData, completionHandler: parseCompletionHandler){
+        do{
+            var parsedResult: AnyObject!
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            print(parsedResult)
+        }catch{
+            print("Could not convert data as JSON")
+        }
         
     }
 }
