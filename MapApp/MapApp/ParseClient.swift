@@ -136,26 +136,13 @@ class ParseClient{
         }
     }
     
-    /*func escapedParameters(parameters: [String : AnyObject]) -> String {
-        var strings = [String]()
-        for (key, value) in parameters {
-            let value = "\(value)"
-            let escapedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            print("escapedValue: \(escapedValue)")
-            let newEscapedValue = escapedValue!.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
-            print("escapedValue: \(newEscapedValue)")
-            strings += [key + "=" + "\(newEscapedValue)"]
-        }
-        return (!strings.isEmpty ? "?" : "") + strings.joinWithSeparator("&")
-}*/
-    
     func escapedParameters(parameters: [String : AnyObject]) -> String {
         
         var urlVars = [String]()
         for (key, value) in parameters {
             let stringValue = "\(value)"
             let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            let newEscapedValue = escapedValue?.stringByReplacingOccurrencesOfString(":", withString: "")
+            let newEscapedValue = escapedValue?.stringByReplacingOccurrencesOfString(":", withString: "%3A")
             urlVars += [key + "=" + "\(newEscapedValue!)"]
         }
         print((!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&"))
