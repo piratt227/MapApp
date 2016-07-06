@@ -10,7 +10,9 @@ import Foundation
 
 class StudentManager{
     
-    var students: [Student]?
+    var students: [Student] = [Student]()
+    var currentStudent: Student?
+    var currentStudentKey: String?
     
 // Shared Instance **************************************************************************************
 // ******************************************************************************************************

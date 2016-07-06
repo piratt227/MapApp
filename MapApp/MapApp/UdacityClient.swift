@@ -17,7 +17,7 @@ class UdacityClient{
     static let sharedInstance = UdacityClient()
     
     // Udacity Video - Type Alias Example - Grand Central Dispatch - Closures Reloaded
-    typealias udacityCompletionHandler = (data: NSDictionary?, error: String?) -> Void
+    typealias udacityCompletionHandler = (success: Bool, data: NSDictionary?, error: String?) -> Void
     
     init(){
         session = NSURLSession.sharedSession()
@@ -32,24 +32,23 @@ class UdacityClient{
         let task = session.dataTaskWithRequest(request){ (data, response, error) in
             guard (error == nil) else{
                 print("udacityLogin task error: \(error)")
-                completionHandler(data: nil, error: "Error")
+                completionHandler(success: false, data: nil, error: "Error")
                 return
             }
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 print("Your request returned a status code other than 2xx!")
-                completionHandler(data: nil, error: "Error")
+                completionHandler(success: false, data: nil, error: "Error")
                 return
             }
             guard (data != nil) else{
                 print("udacityLogin data is nil")
-                completionHandler(data: nil, error: "Error")
+                completionHandler(success: false, data: nil, error: "Error")
                 return
             }
             let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
-            self.convertDataWithCompletionHandler(newData){ (data, error) in
+            self.convertDataWithCompletionHandler(newData){ (success, data, error) in
             }
-            completionHandler(data: self.udacity, error: "")
-            print(self.udacity)
+            completionHandler(success: true, data: self.udacity, error: "")
             
         }
         task.resume()
@@ -59,7 +58,14 @@ class UdacityClient{
         do{
             var parsedResult: AnyObject!
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            udacity = parsedResult as? NSDictionary
+            
+            if let udacity = parsedResult{
+                if let account = parsedResult["account"]{
+                    if let uniqueKey = account!["key"]{
+                        StudentManager.sharedInstance().currentStudentKey = uniqueKey as? String
+                    }
+                }
+            }
         }catch{
             print("Could not convert data as JSON")
         }

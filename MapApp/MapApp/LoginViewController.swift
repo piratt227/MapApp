@@ -13,6 +13,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     var udacityClient: UdacityClient!
+    var parseClient: ParseClient!
+    
     
     
     
@@ -31,15 +33,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
 
     @IBAction func loginButtonPressed(sender: AnyObject) {
-        print("Login Button Pressed")
         loginToUdacity()
-        }
+    }
     
     func loginToUdacity(){
-        UdacityClient.sharedInstance.udacityLogin(emailTextField.text!, password: passwordTextField.text!){ (data, error) in
-            if data != nil{
-                ParseClient.sharedInstance.getStudentLocations()
+        UdacityClient.sharedInstance.udacityLogin(emailTextField.text!, password: passwordTextField.text!){ (success, data, error) in
+            dispatch_async(dispatch_get_main_queue()){
+                self.performSegueWithIdentifier("TabBarSegue", sender: self)                
             }
         }
     }
 }
+
+
+
