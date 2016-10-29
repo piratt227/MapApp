@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class TableViewController: UIViewController, UITableViewDelegate, UITabBarDelegate{
     
-    var students: [Student]?
+    var parseClient = ParseClient.sharedInstance
+    @IBOutlet weak var studentTable: UITableView!
+    var students = StudentManager.sharedInstance().students
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,22 +25,56 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let rows = students?.count{
-            return rows
-        }
-        else{
-            return 0
-        }
+        return students.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
-        cell = tableView.dequeueReusableCellWithIdentifier("CellReuseID")
-        if let students = self.students{
+        let cell = tableView.dequeueReusableCellWithIdentifier("CellReuseID", forIndexPath: indexPath)
         let student = students[indexPath.row]
-        cell.textLabel!.text = student.firstName
+        if student.lastName == ""{
+            cell.textLabel?.text = "Name Missing"
+        }
+        else{
+        cell.textLabel?.text = (student.firstName! + " " + student.lastName!)
         }
         return cell
-    
     }
+    
+    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        let student = students[indexPath.row]
+        let application = UIApplication.sharedApplication()
+        let urlString = student.mediaURL
+        if urlString!.hasPrefix("www"){
+            let urlString = ("http://" + urlString!)
+            let url = NSURL(string: urlString)
+            if application.canOpenURL(url!){
+                application.openURL(url!)
+            }
+        }
+        else if urlString!.hasPrefix("http://") || urlString!.hasPrefix("https://"){
+            let url = NSURL(string: urlString!)
+            if application.canOpenURL(url!){
+                application.openURL(url!)
+            }
+        }
+        else{
+            self.alertView("Error", message: "Invalid URL")
+        }
+    }
+    
+    
+    
+    
+    func loadStudents(){
+        ParseClient.sharedInstance.getStudentLocations(){ (success, result, error) in
+        }
+    }
+    
+    func alertView(tite: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(defaultAction)
+        presentViewController(alert, animated: true, completion: nil)
+        }
+
 }

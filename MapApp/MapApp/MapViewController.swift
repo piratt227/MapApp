@@ -12,30 +12,29 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate{
     
-    @IBOutlet weak var addPinButton: UIBarButtonItem!
-    @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var mapView: MKMapView!
     
-    var uniqueKey: String?
+    var uniqueKey: AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadStudentLocations()
+        dispatch_async(dispatch_get_main_queue()){
+            self.loadStudentLocations()}
+        ParseClient.sharedInstance.getCurrentStudent(StudentManager.sharedInstance().currentStudentKey){ success, data, error in}
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        uniqueKey = StudentManager.sharedInstance().currentStudentKey
-        
+        //uniqueKey = StudentManager.sharedInstance().currentStudentKey
         
     }
     
     @IBAction func addPinButtonPressed(sender: AnyObject) {
         self.performSegueWithIdentifier("LocationEntrySegue", sender: self)
-        ParseClient.sharedInstance.getCurrentStudent(uniqueKey!){ success, data, error in}
-        ParseClient.sharedInstance.postLocation(uniqueKey!){data, error in
+        
+        //ParseClient.sharedInstance.postLocation(uniqueKey! as! String){data, error in
             
-        }
+        //}
         
         
     }
@@ -59,8 +58,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
             annotation.title = "\(firstName) \(lastName)"
             annotation.subtitle = "\(mediaURL)"
             annotations.append(annotation)
-                }
-        
+            }
         mapView.addAnnotations(annotations)
     }
     
@@ -70,10 +68,50 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             pinView!.canShowCallout = true
-            pinView!.pinTintColor = .redColor()
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            
+            
+        }
+        else{
+            pinView?.annotation = annotation
         }
         return pinView!
     }
+    func mapView(mapView:MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl){
+        if control == annotationView.rightCalloutAccessoryView{
+            let application = UIApplication.sharedApplication()
+            let urlString = annotationView.annotation?.subtitle!
+            if urlString!.hasPrefix("www"){
+                let urlString = ("http://" + urlString!)
+                let url = NSURL(string: urlString)
+                if application.canOpenURL(url!){
+                    application.openURL(url!)
+                }
+            }
+            else if urlString!.hasPrefix("http://") || urlString!.hasPrefix("https://"){
+                let url = NSURL(string: urlString!)
+                if application.canOpenURL(url!){
+                    application.openURL(url!)
+                }
+            }
+            else{
+                let urlString = ("http://www." + urlString!)
+                let url = NSURL(string: urlString)
+                if application.canOpenURL(url!){
+                        application.openURL(url!)
+                }
+                else{
+                    alertView("Error", message: "Cannot Open Website")
+                }
+            }
+        }
+    }
     
+    func alertView(tite: String, message: String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(defaultAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    @IBAction func myUnwindAction(segue: UIStoryboardSegue) {}
 }

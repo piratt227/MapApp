@@ -17,6 +17,8 @@
 		931F2ECC1D198EA40051F8B9 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ECB1D198EA40051F8B9 /* UdacityClient.swift */; };
 		931F2ED01D198EB20051F8B9 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ECF1D198EB20051F8B9 /* Student.swift */; };
 		931F2ED21D198EB90051F8B9 /* StudentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F2ED11D198EB90051F8B9 /* StudentManager.swift */; };
+		93781D6D1DC402BF003B1ABC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93781D6C1DC402BF003B1ABC /* TabBarController.swift */; };
+		9399C8A11DBFD40700B09286 /* WebsiteEntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399C8A01DBFD40700B09286 /* WebsiteEntryController.swift */; };
 		93B2391F1D1AF1F400DA5AE3 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2391E1D1AF1F400DA5AE3 /* ParseClient.swift */; };
 		93B239211D1B0A1700DA5AE3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B239201D1B0A1700DA5AE3 /* MapViewController.swift */; };
 		93B4CB1C1D2719F400002B59 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B4CB1B1D2719F400002B59 /* TableViewController.swift */; };
@@ -57,6 +59,8 @@
 		931F2ECB1D198EA40051F8B9 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		931F2ECF1D198EB20051F8B9 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		931F2ED11D198EB90051F8B9 /* StudentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentManager.swift; sourceTree = "<group>"; };
+		93781D6C1DC402BF003B1ABC /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		9399C8A01DBFD40700B09286 /* WebsiteEntryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebsiteEntryController.swift; sourceTree = "<group>"; };
 		93B2391E1D1AF1F400DA5AE3 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		93B239201D1B0A1700DA5AE3 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		93B4CB1B1D2719F400002B59 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				93B239201D1B0A1700DA5AE3 /* MapViewController.swift */,
 				93B4CB1B1D2719F400002B59 /* TableViewController.swift */,
 				93B4CB1D1D2BF69000002B59 /* AddLocationController.swift */,
+				9399C8A01DBFD40700B09286 /* WebsiteEntryController.swift */,
+				93781D6C1DC402BF003B1ABC /* TabBarController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,10 +307,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93781D6D1DC402BF003B1ABC /* TabBarController.swift in Sources */,
 				93B4CB1E1D2BF69000002B59 /* AddLocationController.swift in Sources */,
 				93B2391F1D1AF1F400DA5AE3 /* ParseClient.swift in Sources */,
 				931F2EA01D198C880051F8B9 /* LoginViewController.swift in Sources */,
 				931F2ED21D198EB90051F8B9 /* StudentManager.swift in Sources */,
+				9399C8A11DBFD40700B09286 /* WebsiteEntryController.swift in Sources */,
 				93B4CB1C1D2719F400002B59 /* TableViewController.swift in Sources */,
 				931F2E9E1D198C880051F8B9 /* AppDelegate.swift in Sources */,
 				931F2ED01D198EB20051F8B9 /* Student.swift in Sources */,

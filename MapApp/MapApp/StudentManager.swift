@@ -11,8 +11,13 @@ import Foundation
 class StudentManager{
     
     var students: [Student] = [Student]()
-    var currentStudent: Student?
-    var currentStudentKey: String?
+    var currentStudent: [String: AnyObject]!
+    var currentStudentKey: String!
+    var locationText: String!
+    var latitude: Float!
+    var longitude: Float!
+    var website: String!
+    var myStudent: Student!
     
 // Shared Instance **************************************************************************************
 // ******************************************************************************************************
